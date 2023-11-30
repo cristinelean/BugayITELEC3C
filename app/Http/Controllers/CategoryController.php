@@ -27,4 +27,39 @@ class CategoryController extends Controller
 
         return redirect('/category');
     }
+    public function EditCat($id)
+    {
+        $update = Category::find($id);
+        return view('edit', compact('update'));
+    }
+
+    public function UpdateCat(Request $request, $id): RedirectResponse
+    {
+        // Validate the request...
+        $updatedCategory = Category::find($id);
+
+        $updatedCategory->category_name = $request->input('name');
+        $updatedCategory->user_id = $request->input('id');
+
+        $updatedCategory->save();
+
+        return redirect('/category');
+    }
+
+    public function RemoveCat($id) {
+        Category::find($id)->delete();
+        return Redirect()->back();
+    }
+
+    public function RestoreCat($id) {
+        Category::withTrashed()->find($id)->restore();
+        return Redirect()->back();
+        //return Redirect()->back()->with('success','Category restored successfully');
+    }
+
+    public function DeleteCat($id) {
+        Category::onlyTrashed()->find($id)->forceDelete();
+        return Redirect()->back();
+    }
 }
+
