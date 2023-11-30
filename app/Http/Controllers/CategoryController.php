@@ -25,7 +25,7 @@ class CategoryController extends Controller
 
         $Category->save();
 
-        return redirect('/category');
+        return Redirect()->route('category')->with('success','Category added successfully!');
     }
     public function EditCat($id)
     {
@@ -43,23 +43,22 @@ class CategoryController extends Controller
 
         $updatedCategory->save();
 
-        return redirect('/category');
+        return Redirect()->route('category')->with('success','Category updated successfully!');
     }
 
     public function RemoveCat($id) {
         Category::find($id)->delete();
-        return Redirect()->back();
+        return Redirect()->route('category')->with('success','Category removed successfully!');
     }
 
     public function RestoreCat($id) {
         Category::withTrashed()->find($id)->restore();
-        return Redirect()->back();
-        //return Redirect()->back()->with('success','Category restored successfully');
+        return Redirect()->route('category')->with('success','Category restored successfully!');
     }
 
     public function DeleteCat($id) {
         Category::onlyTrashed()->find($id)->forceDelete();
-        return Redirect()->back();
+        return Redirect()->route('category')->with('success','Category deleted successfully!');
     }
 }
 

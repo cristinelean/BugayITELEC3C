@@ -20,10 +20,10 @@ class BrandController extends Controller
             'brand_name' => 'required|unique:brands|max:100',
             'brand_image' => 'required|mimes:jpg,jpeg,png'
         ], [
-            'brand_name.required' => 'Please inputt a brand name',
-            'brand_name.max' => 'Brand name must be less than100 characters',
-            'brand_image.required' => 'Please uplaod an image',
-            'brand_image.mimes' => 'Please upload with an extension of jpg,jpeg,png only'
+            'brand_name.required' => 'Kindly enter the brand name.',
+            'brand_name.max' => 'The brand name must be no more than 100 characters long.',
+            'brand_image.required' => 'Please provide a picture.',
+            'brand_image.mimes' => 'Please only submit files with the extensions jpg, jpeg, and png.'
         ]);
 
         $brand_image = $request->file('brand_image');

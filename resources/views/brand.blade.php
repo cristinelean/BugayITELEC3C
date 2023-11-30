@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            All Brand
+            Brand
         </h2>
     </x-slot>
 
@@ -11,15 +11,17 @@
         <div class="col-lg-8">
             <div class="py-4">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <h3 class="font-semibold text-xl text-gray-800 leading-tight">
-                        {{ __('All Categories') }}
-                    </h3>
+
+                <h3 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Uploaded Brand') }}
+            </h3>
+                    
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
                                 <th scope="col">Category Name</th>
+                                <th scope="col">Image</th>
                                 <th scope="col">Created at</th>
                             </tr>
                         </thead>
@@ -32,7 +34,7 @@
                                 <th scope="row">{{$i++}}</th>
                                 <td>{{$brand->brand_name}}</td>
                                 <td>
-                                    <img src="{{asset($brand->brand_image)}}" style="width:70px;height:40px;">
+                                <img src="{{ asset($brand->brand_image) }}" style="max-width: 100px; max-height: 100px; width: auto; height: auto;">
                                 </td>
                                 <td>{{$brand->created_at->diffforhumans()}}</td>
                                 
@@ -48,9 +50,9 @@
         <div class="col-lg-4">
             <div class="py-4 pl-lg-3">
                 <div class="max-w-lg mx-auto sm:px-6 lg:px-8">
-                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                        Add Brand
-                    </h2>
+                <h3 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Add Brand') }}
+            </h3>
                     <form method="post" action="{{route('add.brand')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
